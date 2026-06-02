@@ -70,6 +70,11 @@ function handledeletdone() {
     setlocalProject((department) => department.filter((Project) => Project.id !== ProjectToDelete.id));
 
     setProjectToDelete(null);
+    showToast({
+        type: "success",
+        title: "Project deleted",
+        message: `${ProjectToDelete.name} has been deleted successfully.`,
+    });
 }
 
 

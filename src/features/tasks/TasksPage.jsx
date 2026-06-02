@@ -20,6 +20,15 @@ import {TableSkeleton} from "../../components/feedback/Skeleton";
 import ErrorState from "../../components/feedback/ErrorState";
 import EmptyState from "../../components/feedback/EmptyState";
 
+
+// modal
+import Modal from "../../components/overlay/Modal";
+// toast
+import {useToast} from "../../context/ToastContext";
+// toast
+//import task form
+import TaskForm from "./components/TaskForm";
+import ConfirmDialog from "../../components/overlay/ConfirmDialog";
 import "./tasks.css";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -35,6 +44,12 @@ function TasksPage() {
     const [selectedStatus, setSelectedStatus] = useState("All");
     const [selectedPriority, setSelectedPriority] = useState("All");
 
+
+    //modal and toast and oprations
+    const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+    const [taskToEdit, setTaskToEdit] = useState(null);
+    const [taskToDelete, setTaskToDelete] = useState(null);
+    const {showToast} = useToast();
 
     // eslint-disable-next-line no-unused-vars
     const pendingTasks = localTasks.filter((task) => task.status === "Pending").length;
@@ -74,6 +89,48 @@ function TasksPage() {
     }, [tasks]);
 
 
+    /**==========  the addproject and edit and delet function action=======*/
+
+function handleAddTask(newTask) {
+    // setlocalTask([...localTask, newTask]); false because it depends on the previous state and may cause bugs if state updates are batched, leading to stale state issues.
+    // setlocalTask([...localTask, newTask]); true but not recomended
+    // setlocalTask((prev) => [...prev, newTask]); true and recomended because it ensures that we are working with the most up-to-date state, even if multiple updates are batched together.
+    setLocalTasks((prev) => [
+        ...prev,
+        {
+            ...newTask,
+            id: Date.now(),
+        },
+    ]);
+
+    setIsTaskModalOpen(false);
+    showToast({
+        type: "success",
+        title: "Task added",
+        message: `${newTask.name} has been added successfully.`,
+    });
+}
+
+
+//ask delet
+ function handleAskDelete(Task) {
+     setTaskToDelete(Task);
+ }
+// delet done
+function handledeletdone() {
+    setLocalTasks((tasks) => tasks.filter((Task) => Task.id !== taskToDelete.id));
+
+    setTaskToDelete(null);
+    showToast({
+        type: "success",
+        title: "Task deleted",
+        message: `${taskToDelete.name} has been deleted successfully.`,
+    });
+}
+
+
+{/** ======= the addTask function action=======*/}
+
 
 
   
@@ -83,7 +140,7 @@ function TasksPage() {
                      title="Tasks"
                      description="Track daily work, priorities, responsibility, and execution status."
                      actionLabel="Create Task"
-                     onAction={() => console.log("Create task clicked")}
+                     onAction={() => setIsTaskModalOpen(true)}
                  />
 
                  {isLoading && <TableSkeleton rows={6} />}
@@ -137,18 +194,81 @@ function TasksPage() {
 
                              <div className="tasks-grid">
                                  {filteredTasks.map((task) => (
-                                     <TaskCard key={task.id} task={task} onStatusChange={handleStatusChange} />
+                                     <TaskCard
+                                         key={task.id}
+                                         task={task}
+                                         onStatusChange={handleStatusChange}
+                                         onDelete={handleAskDelete}
+                                         setTaskToEdit={setTaskToEdit}
+                                     />
                                  ))}
                              </div>
                          </SectionCard>
 
-
-                         { filteredTasks.length === 0 &&(<EmptyState
-                     title="No tasks match your current filters."
-                     description="Try changing your search term or tasks filter."
-                 />)}
+                         {filteredTasks.length === 0 && (
+                             <EmptyState
+                                 title="No tasks match your current filters."
+                                 description="Try changing your search term or tasks filter."
+                             />
+                         )}
                      </>
                  )}
+
+                 {/* Modals for Add/Edit/Delete would go here */}
+                 <Modal
+                     isOpen={isTaskModalOpen}
+                     title="Add New Task"
+                     description="Create a new Task profile and assign Task details."
+                     onClose={() => setIsTaskModalOpen(false)}
+                 >
+                     <TaskForm
+                         onSubmit={handleAddTask}
+                         onCancel={() => setIsTaskModalOpen(false)}
+                         initialData={localTasks}
+                     />
+                 </Modal>
+
+                 <Modal
+                     isOpen={Boolean(taskToEdit)}
+                     title="Edit Task"
+                     description={`Update ${taskToEdit?.name} information.`}
+                     onClose={() => setTaskToEdit(null)}
+                 >
+                     // eslint-disable-next-line no-undef
+                     <TaskForm
+                         initialData={taskToEdit}
+                         onSubmit={(updatedTask) => {
+                             setLocalTasks((prev) =>
+                                 prev.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+                             );
+
+                             showToast({
+                                 type: "success",
+                                 title: "Task updated",
+                                 message: `${updatedTask.name} has been updated successfully.`,
+                             });
+
+                             setTaskToEdit(null);
+                         }}
+                         onCancel={() => setTaskToEdit(null)}
+                     />
+                 </Modal>
+                 {/* confirm to sure the delete opration */}
+                 <ConfirmDialog
+                     isOpen={Boolean(taskToDelete)}
+                     type="danger"
+                     title="Delete Task?"
+                     description={
+                         taskToDelete
+                             ? `Are you sure you want to delete ${taskToDelete.name}? This action cannot be undone.`
+                             : ""
+                     }
+                     confirmLabel="Delete"
+                     cancelLabel="Cancel"
+                     onConfirm={handledeletdone}
+                     onCancel={() => setTaskToDelete(null)}
+                 />
+                 {/* confirm to sure the delete opration */}
              </>
          );
 

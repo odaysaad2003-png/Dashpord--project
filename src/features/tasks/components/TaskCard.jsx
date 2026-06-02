@@ -1,4 +1,4 @@
-function TaskCard({task, onStatusChange}) {
+function TaskCard({task, onStatusChange , onDelete, setTaskToEdit}) {
     return (
         <article className="task-card">
             <div className="task-card-top">
@@ -24,6 +24,14 @@ function TaskCard({task, onStatusChange}) {
                     <span>Due Date</span>
                     <strong>{task.dueDate}</strong>
                 </div>
+            </div>
+            <div className="action " style={{display: "flex", gap: "10px"}}>
+                <button style={{width: "70px"}} className="table-edit-button" onClick={() => setTaskToEdit(task)}>
+                    Edit
+                </button>
+                <button className="table-danger-button" onClick={() => onDelete(task)}>
+                    Delete
+                </button>
             </div>
 
             <div className="task-actions">
