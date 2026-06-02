@@ -29,7 +29,7 @@ export default function ProjectsPage() {
     const [isaddProjectModalOpen, setisaddProjectModalOpen] = useState(false);
 
     const [ProjectToEdit, setProjectToEdit] = useState(null);
-    // const [ProjectToDelete, setProjectToDelete] = useState(null);
+    const [ProjectToDelete, setProjectToDelete] = useState(null);
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -61,6 +61,16 @@ function handleAddProject(newproject) {
 }
 
 
+//ask delet
+ function handleAskDelete(project) {
+     setProjectToDelete(project);
+ }
+// delet done
+function handledeletdone() {
+    setlocalProject((department) => department.filter((Project) => Project.id !== ProjectToDelete.id));
+
+    setProjectToDelete(null);
+}
 
 
 {/** ======= the addproject function action=======*/}
@@ -126,7 +136,12 @@ function handleAddProject(newproject) {
                     <SectionCard title="Project Portfolio">
                         <div className="projects-grid">
                             {localProject.map((project) => (
-                                <ProjectCard key={project.id} project={project} setProjectToEdit={setProjectToEdit} />
+                                <ProjectCard
+                                    key={project.id}
+                                    project={project}
+                                    onDelete={handleAskDelete}
+                                    setProjectToEdit={setProjectToEdit}
+                                />
                             ))}
                         </div>
                     </SectionCard>
@@ -171,6 +186,22 @@ function handleAddProject(newproject) {
                     onCancel={() => setProjectToEdit(null)}
                 />
             </Modal>
+            {/* confirm to sure the delete opration */}
+            <ConfirmDialog
+                isOpen={Boolean(ProjectToDelete)}
+                type="danger"
+                title="Delete Project?"
+                description={
+                    ProjectToDelete
+                        ? `Are you sure you want to delete ${ProjectToDelete.name}? This action cannot be undone.`
+                        : ""
+                }
+                confirmLabel="Delete"
+                cancelLabel="Cancel"
+                onConfirm={handledeletdone}
+                onCancel={() => setProjectToDelete(null)}
+            />
+            {/* confirm to sure the delete opration */}
         </>
     );
 }

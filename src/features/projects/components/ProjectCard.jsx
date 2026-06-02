@@ -1,5 +1,5 @@
 import React from "react";
-export default function ProjectCard({project, onDelete, setProjectToEdit}) {
+export default function ProjectCard({project, onDelete, setProjectToEdit, }) {
     const isCompleted = project.progress === 100;
 
     const progressLabel = isCompleted ? "Completed" : `${project.progress}% completed`;

@@ -86,9 +86,7 @@ function handledeletdone() {
     console.log("oady")
         setlocaldeoartment((department) => department.filter((employee) => employee.id !== departmentToDelete.id));
 
-
-setDepartmentToDelete(null);
-}
+setDepartmentToDelete(null);}
 
 
 
