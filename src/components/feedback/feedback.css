@@ -1,0 +1,122 @@
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-hover) 25%,
+    var(--color-border) 37%,
+    var(--color-hover) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.2s ease-in-out infinite;
+}
+
+.skeleton-card {
+  min-height: 170px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  padding: 20px;
+}
+
+.skeleton-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+}
+
+.skeleton-line {
+  height: 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.skeleton-line.large {
+  width: 70%;
+  height: 18px;
+}
+
+.skeleton-line.short {
+  width: 45%;
+}
+
+.skeleton-table {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.skeleton-table-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 160px 120px;
+  gap: 14px;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skeleton-table-row:last-child {
+  border-bottom: none;
+}
+
+.skeleton-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+}
+
+.empty-state-box,
+.error-state-box {
+  min-height: 260px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  padding: 32px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.empty-state-icon,
+.error-state-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+}
+
+.empty-state-icon {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.error-state-icon {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.empty-state-box h3,
+.error-state-box h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.empty-state-box p,
+.error-state-box p {
+  max-width: 420px;
+  margin: 8px 0 18px;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}

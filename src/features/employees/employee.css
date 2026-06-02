@@ -1,0 +1,196 @@
+.employees-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.employees-search,
+.employees-filter {
+  height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+}
+
+.employees-search {
+  flex: 1;
+  padding: 0 14px;
+}
+
+.employees-filter {
+  width: 220px;
+  padding: 0 12px;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.employees-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employees-table th {
+  text-align: left;
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.employees-table td {
+  padding: 16px 14px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+}
+
+.employee-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.employee-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.employee-cell strong {
+  display: block;
+  font-size: 14px;
+}
+
+.employee-cell span {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.employee-status {
+  display: inline-flex;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.employee-status.active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.employee-status.on-leave {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.employee-status.inactive {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.empty-state {
+  padding: 28px;
+  text-align: center;
+  color: var(--color-muted);
+}
+/*  delet button style */
+.table-danger-button {
+  border: none;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 900;
+  transition: 0.4s ease all;
+}
+
+.table-danger-button:hover {
+  background: #ef2727;
+  color: white;
+}
+.table-edit-button {
+  border: none;
+  background: #dbeafe;
+  color: #2563eb;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 900;
+  transition: all 0.3s;
+}
+
+.table-edit-button:hover {
+  background: #2563eb;
+  color: white;
+}
+/*  delet and edit button style */
+
+/* add form emploeeys style start */
+
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-field label {
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.form-field input,
+.form-field select {
+  height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 0 12px;
+  outline: none;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.form-error {
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+
+
+
+/* add form emploeeys style end ==================== */

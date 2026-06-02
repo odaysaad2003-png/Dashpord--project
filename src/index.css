@@ -1,0 +1,9 @@
+@import "./styles/components/components.css";
+@import "./styles/variables.css";
+@import "./styles/base.css";
+@import "./styles/responsive.css";
+@import "./styles/layouts/mainlayout.css";
+@import "./styles/layouts/sidebar.css";
+@import "./styles/layouts/navbar.css";
+
+
