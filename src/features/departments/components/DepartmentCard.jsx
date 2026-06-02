@@ -1,4 +1,5 @@
 import {Users, FolderKanban, Wallet} from "lucide-react";
+import Can from "../../../components/common/Can";
 
 function DepartmentCard({department, setDepartmentToEdit, onDelete}) {
     const budgetFormatted = department.budget.toLocaleString();
@@ -39,17 +40,21 @@ function DepartmentCard({department, setDepartmentToEdit, onDelete}) {
                     </div>
                 </div>
             </div>
-            <div className="action " style={{display:"flex", gap:"10px"}}>
-                <button
-                    style={{width: "70px"}}
-                    className="table-edit-button"
-                    onClick={() => setDepartmentToEdit(department)}
-                >
+            <div className="action " style={{display: "flex", gap: "10px"}}>
+                <Can roles={["admin", "manager"]}>
+                    <button
+                        style={{width: "70px"}}
+                        className="table-edit-button"
+                        onClick={() => setDepartmentToEdit(department)}
+                    >
                     Edit
                 </button>
-                <button className="table-danger-button" onClick={() => onDelete(department)}>
-                    Delete
-                </button>
+                </Can>
+                <Can roles={["admin"]}>
+                    <button className="table-danger-button" onClick={() => onDelete(department)}>
+                        Delete
+                    </button>
+                </Can>
             </div>
         </article>
     );

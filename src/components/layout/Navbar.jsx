@@ -1,18 +1,33 @@
-
-import {Search, Bell, Moon, Sun, Menu} from "lucide-react";
-import {useTheme} from "../../context/ThemeContext";
-import "../../styles/layouts/navbar.css"
-
+import {Search, Bell, Moon, Sun, Menu, LogOut} from "lucide-react";
+import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-// import {useLanguage} from "../../context/LanguageContext";
+
+import {useTheme} from "../../context/ThemeContext";
+import {useAuth} from "../../context/AuthContext";
+import {useToast} from "../../context/ToastContext";
+
+import "../../styles/layouts/navbar.css";
 
 export default function Navbar({onMenuClick}) {
-
-
+    
 const {themeMode, toggleTheme, themeModes} = useTheme();
-
 const {t} = useTranslation();
 
+const navigate = useNavigate();
+const {user, logout} = useAuth();
+const {showToast} = useToast();
+
+function handleLogout() {
+    logout();
+
+    showToast({
+        type: "success",
+        title: "Logged out",
+        message: "You have been logged out successfully.",
+    });
+
+    navigate("/login");
+}
 
     return (
         <header className="navbar">
@@ -42,12 +57,22 @@ const {t} = useTranslation();
                     <Bell size={18} />
                 </button>
 
-                <div className="user-profile">
+                {/* <div className="user-profile">
                     <div className="avatar">A</div>
                     <div>
                         <strong>{t("navigation.maniger")}</strong>
-                        
                     </div>
+                </div> */}
+                <div className="navbar-user">
+                    <div>
+                        <strong>{user?.name}</strong>
+                        <span>{user?.role}</span>
+                    </div>
+
+                    <button className="logout-button" onClick={handleLogout}>
+                        <LogOut size={18} />
+                        Logout
+                    </button>
                 </div>
             </div>
         </header>

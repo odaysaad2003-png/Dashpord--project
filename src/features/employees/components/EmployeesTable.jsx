@@ -1,6 +1,9 @@
 import React from 'react'
 
 import EmptyState from "../../../components/feedback/EmptyState";
+
+import Can from "../../../components/common/Can";
+
 import {useTranslation} from "react-i18next";
 
 export default function EmployeesTable({filteredEmployees, onDelete, setEmployeeToEdit}) {
@@ -51,17 +54,21 @@ export default function EmployeesTable({filteredEmployees, onDelete, setEmployee
                                         </span>
                                     </td>
                                     <td>
-                                        <button className="table-danger-button" onClick={() => onDelete(employee)}>
-                                            Delete
-                                        </button>
+                                        <Can roles={["admin", "manager"]}>
+                                            <button className="table-danger-button" onClick={() => onDelete(employee)}>
+                                                Delete
+                                            </button>
+                                        </Can>
                                     </td>
                                     <td>
-                                        <button
-                                            className="table-edit-button"
-                                            onClick={() => setEmployeeToEdit(employee)}
-                                        >
-                                            Edit
-                                        </button>
+                                        <Can roles={[ "manager"]}>
+                                            <button
+                                                className="table-edit-button"
+                                                onClick={() => setEmployeeToEdit(employee)}
+                                            >
+                                                Edit
+                                            </button>
+                                        </Can>
                                     </td>
                                 </tr>
                             ))}
