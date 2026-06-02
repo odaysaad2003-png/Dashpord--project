@@ -110,6 +110,20 @@ This structure improves maintainability and simplifies future development.
 * Dashboard Analytics
 * Advanced Filtering & Search
 * Role-Based Access Control
+* 
+## Screenshots
+
+### Dashboard Home
+
+![Dashboard Home](./screenshots/dashboard-home.png)
+
+### Dark Mode
+
+![Dark Mode](./screenshots/dark-mode.png)
+
+### Mobile View
+
+![Mobile View](./screenshots/mobile-view.png)
 
 ## Getting Started
 
