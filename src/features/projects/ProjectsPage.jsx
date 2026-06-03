@@ -172,7 +172,6 @@ function handledeletdone() {
                 description={`Update ${ProjectToEdit?.name} information.`}
                 onClose={() => setProjectToEdit(null)}
             >
-                // eslint-disable-next-line no-undef
                 <ProjectForm
                     initialData={ProjectToEdit}
                     onSubmit={(updatedProject) => {

@@ -101,7 +101,7 @@ setDepartmentToDelete(null);}
                 onAction={() => setisadddepartmentModalOpen(true)}
             />
             {isLoading && <TableSkeleton rows={6} />}
-            // eslint-disable-next-line no-undef
+            
             {error && <ErrorState message={error} onRetry={reloadDepartments} />}
             {!isLoading && !error && (
                 <>

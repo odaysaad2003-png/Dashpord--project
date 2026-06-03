@@ -203,7 +203,7 @@ export default function EmployeesPage() {
                 description={`Update ${employeeToEdit?.name} information.`}
                 onClose={() => setEmployeeToEdit(null)}
             >
-                // eslint-disable-next-line no-undef
+                
                 <EmployeeForm
                     initialData={employeeToEdit}
                     onSubmit={(updatedEmployee) => {

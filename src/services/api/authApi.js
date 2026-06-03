@@ -3,19 +3,19 @@ import { fakeRequest } from "./ApiClint";
 const USERS_STORAGE_KEY = "oday_dashboard_users";
 
 const defaultUsers = [
-//   {
-//     id: 1,
-//     name: "Admin Manager",
-//     email: "admin@oday.com",
-//     password: "123456",
-//     role: "admin",
-//   },
+  {
+    id: 1,
+    name: "Admin Manager",
+    email: "admin@oday.com",
+    password: "123456",
+    role: "admin",
+  },
   {
     id: 2,
     name: "Omar Manager",
     email: "manager@oday.com",
     password: "123456",
-    role: "manager",
+    role: "admin",
   },
   {
     id: 3,

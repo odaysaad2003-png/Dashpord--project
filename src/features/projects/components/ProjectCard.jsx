@@ -1,4 +1,5 @@
 import React from "react";
+import Can from "../../../components/common/Can";
 export default function ProjectCard({project, onDelete, setProjectToEdit, }) {
     const isCompleted = project.progress === 100;
 
@@ -37,12 +38,20 @@ export default function ProjectCard({project, onDelete, setProjectToEdit, }) {
                 </div>
             </div>
             <div className="action " style={{display: "flex", gap: "10px"}}>
-                <button style={{width: "70px"}} className="table-edit-button" onClick={() => setProjectToEdit(project)}>
-                    Edit
-                </button>
-                <button className="table-danger-button" onClick={() => onDelete(project)}>
-                    Delete
-                </button>
+                <Can roles={["admin", "manager"]}>
+                    <button
+                        style={{width: "70px"}}
+                        className="table-edit-button"
+                        onClick={() => setProjectToEdit(project)}
+                    >
+                        Edit
+                    </button>
+                </Can>
+                <Can roles={["admin", "manager"]}>
+                    <button className="table-danger-button" onClick={() => onDelete(project)}>
+                        Delete
+                    </button>
+                </Can>
             </div>
         </article>
     );

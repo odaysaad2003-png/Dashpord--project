@@ -54,14 +54,14 @@ export default function EmployeesTable({filteredEmployees, onDelete, setEmployee
                                         </span>
                                     </td>
                                     <td>
-                                        <Can roles={["admin", "manager"]}>
+                                        <Can roles={["admin"]}>
                                             <button className="table-danger-button" onClick={() => onDelete(employee)}>
                                                 Delete
                                             </button>
                                         </Can>
                                     </td>
                                     <td>
-                                        <Can roles={[ "manager"]}>
+                                        <Can roles={["admin", "manager"]}>
                                             <button
                                                 className="table-edit-button"
                                                 onClick={() => setEmployeeToEdit(employee)}

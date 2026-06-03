@@ -48,7 +48,7 @@
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     background: var(--color-bg);
-    display: flex;
+    display: flex !important;
     align-items: center;
     gap: 8px;
     padding: 0 12px;
@@ -97,7 +97,9 @@
      
         margin-left: -22px;
     }
-    
+    .search-box {
+        display: none !important;
+    }
   
 }
 
