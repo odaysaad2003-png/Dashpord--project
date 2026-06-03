@@ -125,6 +125,24 @@ This structure improves maintainability and simplifies future development.
 
 ![Mobile View](./screenshots/mobile-view.png)
 
+Authentication System
+
+* Added Login and Register pages.
+* Implemented AuthContext for global authentication state management.
+* Added protected routes for secured dashboard access.
+* Added public routes for authentication pages.
+* Implemented role-based permissions (Admin, Manager, Employee).
+* Added logout functionality.
+* Persisted authentication state using localStorage.
+* Improved user experience with authentication flow and route protection.
+feat     → ميزة جديدة
+fix      → إصلاح مشكلة
+refactor → تحسين كود بدون تغيير السلوك
+style    → CSS أو تنسيق
+docs     → توثيق
+test     → اختبارات
+chore    → أشياء عامة بالمشروع
+
 ## Getting Started
 
 ```bash
