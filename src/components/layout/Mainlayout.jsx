@@ -3,7 +3,7 @@ import {Outlet} from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import "../../styles/layouts/mainlayout.css";
-export default function Mainlayout() {
+export default function MainLayout() {
 
 
     const [isSidebarOpen , setisSidebarOpen] = useState(false)

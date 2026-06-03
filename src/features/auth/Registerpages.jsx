@@ -6,10 +6,7 @@ import {Eye, EyeOff} from "lucide-react";
 
 import "../../styles/pages/auth.css";
 
-
 export default function RegisterPage() {
-
-
     //password visibility state
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
