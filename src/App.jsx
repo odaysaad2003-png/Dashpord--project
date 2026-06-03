@@ -1,3 +1,6 @@
+// Production build import casing fixed
+import { Routes, Route, Navigate } from "react-router-dom";
+import MainLayout from "./components/layout/MainLayout";
 import {Routes, Route, Navigate} from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
